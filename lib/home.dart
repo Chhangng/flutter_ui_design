@@ -16,6 +16,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
    int curenIdex = 0;
+   List<Map<String,dynamic>> listDrawer = [ 
+    {"name":"Home","icon":Icons.home},
+    {"name":"Favorite","icon":Icons.favorite},
+    {"name":"Setting","icon":Icons.settings}
+   ];
+
   @override
   Widget build(BuildContext context) {
     
@@ -48,13 +54,69 @@ class _MyHomePageState extends State<MyHomePage> {
        }),
       ),  
        
+       drawer: Drawer(
+          backgroundColor: const Color.fromARGB(255, 218, 220, 220),
+          width: 250,
+          child: Column(
+            children: [
+                Container(
+                   height: 50,
+                  margin: const EdgeInsets.only(top: 10,left: 10),
+                  child: Row(
+                     children: [
+                        Icon(Icons.person),
+                        Text("User Account"), 
+                     ],
+                  ),
+                ),
+                const Divider(
+                  height: 10,
+                  color: Colors.pink,
+                ),
+                for(int i = 0;i<listDrawer.length;i++)
+                InkWell(
+                  onTap: ((){
+                      setState(() {
+                        curenIdex = i;
+                        Navigator.pop(context);
+                      });
+                  }),
+                  child: Container(
+                    //  color: Colors.green,
+                    height: 50,
+                    padding: const EdgeInsets.only(top: 10,left: 10),
+                    child: Row(
+                      children: [
+                        Icon(listDrawer[i]["icon"]),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(listDrawer[i]["name"])
+                      ],
+                    ),
+                  ),
+                ),  
+            ]
+            ),
+       ),
     );
   }
+
+
+
+
+
   Widget homeScreen()
   {
-    return Container(
-        child: Text("yese"),
-      );
+    return const Center(
+      child: CustomScrollView(
+         slivers: [
+             SliverAppBar(
+                 title: Text("comtinue"),
+             ),
+         ], 
+      ),
+    );
 
   }
 }

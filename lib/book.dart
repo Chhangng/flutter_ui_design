@@ -5,8 +5,10 @@ class Book extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("book"),
+    return Center(
+      child: Container(
+        child: Text("book"),
+      ),
     );
   }
 }
